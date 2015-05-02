@@ -96,7 +96,7 @@ module.exports.NamedBase = yeoman.generators.NamedBase.extend({
   templatePaths: function templatePaths(type, fileExt) {
     var templateLocales   = ['./blueprints/', './node_modules/']; // locations to look for blueprints.
 
-    this.sourceRoot(__dirname + '/../generators/' + type); // manually set source root to the select generator type
+    this.sourceRoot(__dirname + '/../../../generators/' + type); // manually set source root to the select generator type
 
     var templatePath = this.templatePath('/templates/' + type + '.' + fileExt),
         current,
