@@ -8,7 +8,7 @@ By using these extended methods yeoman will automatically check for locally crea
 ##### GENERATORS MUST BE UNDER A GENERATORS FOLDER 
 
 ```
-npm install -g yeoman-blueprints
+npm install --save yeoman-blueprints
 ```
 
 Methods
