@@ -3,7 +3,7 @@
 Extends Yeoman's NamedBase to allow to your generator to use overridable templates.
 By using these extended methods yeoman will automatically check for locally created template under first ./blueprints and then ./node_modules before falling back to the global templates in the generator.
 
-### GENERATORS MUST BE UNDER A GENERATORS FOLDER 
+##### GENERATORS MUST BE UNDER A GENERATORS FOLDER 
 
 ```
 npm install -g yeoman-blueprints
