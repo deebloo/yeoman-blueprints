@@ -9,9 +9,10 @@
  * @author Danny Blue
  */
 
-var yeoman = require('yeoman-generator'),
-    fs     = require('fs'),
-    chalk  = require('chalk');
+var yeoman  = require('yeoman-generator'),
+    fs      = require('fs'),
+    strings = require("underscore.string"),
+    chalk   = require('chalk');
 
 /**
  * @name blueprints.NamedBase
@@ -71,7 +72,7 @@ module.exports.NamedBase = yeoman.generators.NamedBase.extend({
    * @returns {{destinationPath: string, template: string}}
    */
   destAndTempDir: function destAndTempDir(type, fileExt) {
-    var destination = this.destDirectory + '/' + this._.dasherize(this.name) + '.' + type + '.' + fileExt;
+    var destination = this.destDirectory + '/' + strings.dasherize(this.name) + '.' + type + '.' + fileExt;
 
     return {
       destinationPath: this.destinationPath(destination),
