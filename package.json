@@ -1,0 +1,30 @@
+{
+  "name": "yeoman-blueprints",
+  "version": "0.0.1",
+  "description": "Extend yeoman.generators to add methods to interacting with local templates or blueprint",
+  "main": "src/index.js",
+  "files": [
+    "src/"
+  ],
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/deebloo/yeoman-blueprints.git"
+  },
+  "keywords": [
+    "yeoman",
+    "blueprints"
+  ],
+  "author": "Danny Blue",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/deebloo/yeoman-blueprints/issues"
+  },
+  "homepage": "https://github.com/deebloo/yeoman-blueprints",
+  "dependencies": {
+    "chalk": "^1.0.0",
+    "yeoman-generator": "^0.19.2"
+  }
+}
