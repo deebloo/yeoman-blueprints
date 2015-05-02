@@ -34,16 +34,10 @@ module.exports = blueprints.NamedBase.extend({
   writing: writing
 });
 
-/**
- * @name init
- */
 function init() {
   this.destPath = './client/app/views/';
 }
 
-/**
- * @name writing
- */
 function writing() {
   var values = {appName: this.config.get('appName') }
 
