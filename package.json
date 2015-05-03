@@ -1,6 +1,6 @@
 {
   "name": "yeoman-blueprints",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "Extend yeoman.generators to add methods to interacting with local templates or blueprint",
   "main": "src/index.js",
   "files": [

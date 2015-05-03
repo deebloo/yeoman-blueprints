@@ -35,13 +35,13 @@ var blueprint = require('yeoman-blueprints');
 module.exports = blueprints.NamedBase.extend({
   writing: function writing() {
     // Set destination directory
-    this.destDirectory = './client/app/views/' + this.name;
+    var destDir = './client/app/views/' + this.name + '.controller.js';
              
     // Set the template values
     var values = {appName: this.config.get('appName') }
            
     // Create the template
-    this.copyTpl('controller', 'js', values);
+    this.copyTpl('controller', 'js', destDir, values);
   }
 });
 ```

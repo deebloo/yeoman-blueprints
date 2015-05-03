@@ -1,17 +1,18 @@
 /**
- * TODO: make sytax closer to that of original copy and copyTpl
  * @module blueprints
  *
  * @description
  * Extend yeoman.generators to add methods to interacting with local templates or blueprint
  *
  * @type {*|exports|module.exports}
+ *
+ * @author Danny Blue
  */
 
 var yeoman  = require('yeoman-generator'),
-    fs      = require('fs'),
-    strings = require("underscore.string"),
-    chalk   = require('chalk');
+  fs      = require('fs'),
+  strings = require("underscore.string"),
+  chalk   = require('chalk');
 
 /**
  * @name blueprints.NamedBase
@@ -32,10 +33,11 @@ module.exports.NamedBase = yeoman.generators.NamedBase.extend({
    *
    * @param {String} type
    * @param {String} fileExt
+   * @param {String} dest
    * @param {Object} tempValues
    */
-  copyTpl: function copyTpl(type, fileExt, tempValues) {
-    var files = this.destAndTempDir(type, fileExt);
+  copyTpl: function copyTpl(type, fileExt, dest, tempValues) {
+    var files = this.destAndTempDir(type, fileExt, dest);
 
     this.fs.copyTpl(files.template, files.destinationPath, tempValues);
   },
@@ -67,14 +69,13 @@ module.exports.NamedBase = yeoman.generators.NamedBase.extend({
    *
    * @param {String} type
    * @param {String} fileExt
+   * @param {String} dest
    *
    * @returns {{destinationPath: string, template: string}}
    */
-  destAndTempDir: function destAndTempDir(type, fileExt) {
-    var destination = this.destDirectory + '/' + strings.dasherize(this.name) + '.' + type + '.' + fileExt;
-
+  destAndTempDir: function destAndTempDir(type, fileExt, dest) {
     return {
-      destinationPath: this.destinationPath(destination),
+      destinationPath: this.destinationPath(dest),
       template: this.templatePaths(type, fileExt)
     };
   },
