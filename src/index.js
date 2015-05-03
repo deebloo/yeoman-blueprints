@@ -1,12 +1,11 @@
 /**
+ * TODO: make sytax closer to that of original copy and copyTpl
  * @module blueprints
  *
  * @description
  * Extend yeoman.generators to add methods to interacting with local templates or blueprint
  *
  * @type {*|exports|module.exports}
- *
- * @author Danny Blue
  */
 
 var yeoman  = require('yeoman-generator'),

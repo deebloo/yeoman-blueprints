@@ -33,18 +33,15 @@ Example:
 var blueprint = require('yeoman-blueprints');
 
 module.exports = blueprints.NamedBase.extend({
-  init: init,
-  prompting: prompt,
-  writing: writing
+  writing: function writing() {
+    // Set destination directory
+    this.destDirectory = './client/app/views/' + this.name;
+             
+    // Set the template values
+    var values = {appName: this.config.get('appName') }
+           
+    // Create the template
+    this.copyTpl('controller', 'js', values);
+  }
 });
-
-function init() {
-  this.destPath = './client/app/views/';
-}
-
-function writing() {
-  var values = {appName: this.config.get('appName') }
-
-  this.copyTpl('controller', 'js', values);
-}
 ```
