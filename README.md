@@ -18,14 +18,14 @@ Methods
 // 'controller' - points to generator you want to use in this case located under generators/controller/
 // 'js'         - the file type to be created
 // values       - an object of values to be made available to template
-this.copyTpl('controller', 'js', values);
+this.copyTpl('controller', 'js', './destination/my-controller.js', values);
 ```
 
 ### blueprints.copy
 ```js
 // 'controller' - points to generator you want to use in this case located under generators/controller/
 // 'js'         - the file type to be created
-this.copyTpl('controller', 'js');
+this.copy('view', 'html', './destination/my-view.html');
 ```
 
 Example:
