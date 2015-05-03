@@ -36,12 +36,9 @@ module.exports = blueprints.NamedBase.extend({
   writing: function writing() {
     // Set destination directory
     this.destDirectory = './client/app/views/' + this.name;
-             
-    // Set the template values
-    var values = {appName: this.config.get('appName') }
-           
+    
     // Create the template
-    this.copyTpl('controller', 'js', values);
+    this.copyTpl('controller', 'js', {value1: 'testValue1'});
   }
 });
 ```
