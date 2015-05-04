@@ -52,9 +52,10 @@ module.exports.NamedBase = yeoman.generators.NamedBase.extend({
    *
    * @param {String} type
    * @param {String} fileExt
+   * @param {String} dest
    */
-  copy: function copy(type, fileExt) {
-    var files = this.destAndTempDir(type, fileExt);
+  copy: function copy(type, fileExt, dest) {
+    var files = this.destAndTempDir(type, fileExt, dest);
 
     this.fs.copy(files.template, files.destinationPath);
   },
