@@ -7,6 +7,10 @@ By using these extended methods yeoman will automatically check for locally crea
 
 ##### YOUR GENERATORS MUST BE UNDER generators/ 
 
+```
+npm install --save yeoman-blueprints
+```
+
 the generated folder structure for overriding blueprint
 
     root
@@ -15,10 +19,6 @@ the generated folder structure for overriding blueprint
     |------ blueprint.json
     |------ controller
     └-------- template.js
-
-```
-npm install --save yeoman-blueprints
-```
 
 Methods
 
