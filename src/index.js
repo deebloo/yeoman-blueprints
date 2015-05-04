@@ -78,7 +78,7 @@ module.exports.NamedBase = yeoman.generators.NamedBase.extend({
      */
     destAndTempDir: function destAndTempDir(type, fileExt, dest) {
       return {
-        destinationPath: this.thisRef.destinationPath(dest),
+        destinationPath: this.destinationPath(dest),
         template: this.templatePaths(type, fileExt)
       };
     },
