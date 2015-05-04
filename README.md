@@ -5,13 +5,23 @@ For a working example look at [generator-angular-blueprints](https://github.com/
 Extends Yeoman's NamedBase to allow to your generator to use overridable templates.
 By using these extended methods yeoman will automatically check for locally created template under first ./blueprints and then ./node_modules before falling back to the global templates in the generator.
 
-##### GENERATORS MUST BE UNDER A GENERATORS FOLDER 
+##### YOUR GENERATORS MUST BE UNDER generators/ 
 
 ```
 npm install --save yeoman-blueprints
 ```
 
-Methods
+the generated folder structure for overriding blueprint
+```
+root
+|-- blueprints
+|---- templates
+|------ blueprint.json
+|------ controller
+└-------- template.js
+```
+
+## Methods
 
 ### blueprints.copyTpl
 ```js
@@ -28,7 +38,7 @@ this.copyTpl('controller', 'js', './destination/my-controller.js', values);
 this.copy('view', 'html', './destination/my-view.html');
 ```
 
-Example:
+## Example:
 ```js
 var blueprint = require('yeoman-blueprints');
 
