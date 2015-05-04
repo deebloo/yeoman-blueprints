@@ -10,9 +10,9 @@
  */
 
 var yeoman  = require('yeoman-generator'),
-  fs      = require('fs'),
-  strings = require("underscore.string"),
-  chalk   = require('chalk');
+    fs      = require('fs'),
+    strings = require("underscore.string"),
+    chalk   = require('chalk');
 
 /**
  * @name blueprints.NamedBase
@@ -23,140 +23,144 @@ var yeoman  = require('yeoman-generator'),
  * extend yeoman.generators.NamedBase to add methods to find blueprints
  */
 module.exports.NamedBase = yeoman.generators.NamedBase.extend({
-  /**
-   * @name copyTpl
-   *
-   * @memberof blueprints.NamedBase
-   *
-   * @description
-   * copy file using template values
-   *
-   * @param {String} type
-   * @param {String} fileExt
-   * @param {String} dest
-   * @param {Object} tempValues
-   */
-  copyTpl: function copyTpl(type, fileExt, dest, tempValues) {
-    var files = this.destAndTempDir(type, fileExt, dest);
+  bp: {
+    thisRef: this,
 
-    this.fs.copyTpl(files.template, files.destinationPath, tempValues);
-  },
+    /**
+     * @name copyTpl
+     *
+     * @memberof blueprints.NamedBase
+     *
+     * @description
+     * copy file using template values
+     *
+     * @param {String} type
+     * @param {String} fileExt
+     * @param {String} dest
+     * @param {Object} tempValues
+     */
+    copyTpl: function copyTpl(type, fileExt, dest, tempValues) {
+      var files = this.destAndTempDir(type, fileExt, dest);
 
-  /**
-   * @name copys
-   *
-   * @memberof blueprints.NamedBase
-   *
-   * @description
-   * copy file without template values
-   *
-   * @param {String} type
-   * @param {String} fileExt
-   */
-  copy: function copy(type, fileExt) {
-    var files = this.destAndTempDir(type, fileExt);
+      this.thisRef.fs.copyTpl(files.template, files.destinationPath, tempValues);
+    },
 
-    this.fs.copy(files.template, files.destinationPath);
-  },
+    /**
+     * @name copys
+     *
+     * @memberof blueprints.NamedBase
+     *
+     * @description
+     * copy file without template values
+     *
+     * @param {String} type
+     * @param {String} fileExt
+     */
+    copy: function copy(type, fileExt) {
+      var files = this.destAndTempDir(type, fileExt);
 
-  /**
-   * @name destAndTempDir
-   *
-   * @memberof blueprints.NamedBase
-   *
-   * @description
-   * return the destination director and the template to use.
-   *
-   * @param {String} type
-   * @param {String} fileExt
-   * @param {String} dest
-   *
-   * @returns {{destinationPath: string, template: string}}
-   */
-  destAndTempDir: function destAndTempDir(type, fileExt, dest) {
-    return {
-      destinationPath: this.destinationPath(dest),
-      template: this.templatePaths(type, fileExt)
-    };
-  },
+      this.thisRef.fs.copy(files.template, files.destinationPath);
+    },
 
-  /**
-   * @name templatePaths
-   *
-   * @memberof blueprints.NamedBase
-   *
-   * @description
-   * determine what template path to use. local or global
-   *
-   * @param {String} type
-   * @param {String} fileExt
-   *
-   * @returns {String}
-   */
-  templatePaths: function templatePaths(type, fileExt) {
-    var templateLocales = ['./blueprints/', './node_modules/']; // locations to look for blueprints.
+    /**
+     * @name destAndTempDir
+     *
+     * @memberof blueprints.NamedBase
+     *
+     * @description
+     * return the destination director and the template to use.
+     *
+     * @param {String} type
+     * @param {String} fileExt
+     * @param {String} dest
+     *
+     * @returns {{destinationPath: string, template: string}}
+     */
+    destAndTempDir: function destAndTempDir(type, fileExt, dest) {
+      return {
+        destinationPath: this.thisRef.destinationPath(dest),
+        template: this.templatePaths(type, fileExt)
+      };
+    },
 
-    this.sourceRoot(__dirname + '/../../../generators/' + type); // manually set source root to the select generator type
+    /**
+     * @name templatePaths
+     *
+     * @memberof blueprints.NamedBase
+     *
+     * @description
+     * determine what template path to use. local or global
+     *
+     * @param {String} type
+     * @param {String} fileExt
+     *
+     * @returns {String}
+     */
+    templatePaths: function templatePaths(type, fileExt) {
+      var templateLocales = ['./blueprints/', './node_modules/']; // locations to look for blueprints.
 
-    var templatePath = this.templatePath('/templates/' + type + '.' + fileExt),
+      this.sourceRoot(__dirname + '/../../../generators/' + type); // manually set source root to the select generator type
+
+      var templatePath = this.templatePath('/templates/' + type + '.' + fileExt),
         current,
         newTemplate;
 
-    for(var i = 0, len = templateLocales.length; i < len; i++) {
-      current = templateLocales[i];
+      for(var i = 0, len = templateLocales.length; i < len; i++) {
+        current = templateLocales[i];
 
-      if(fs.existsSync(current)) {
-        newTemplate = this.findBlueprints(type, fileExt, current) || templatePath;
+        if(fs.existsSync(current)) {
+          newTemplate = this.findBlueprints(type, fileExt, current) || templatePath;
 
-        if(newTemplate !== templatePath) {
-          templatePath = newTemplate;
+          if(newTemplate !== templatePath) {
+            templatePath = newTemplate;
 
-          break;
+            break;
+          }
         }
       }
-    }
 
-    return templatePath;
-  },
+      return templatePath;
+    },
 
-  /**
-   * @name findBlueprints
-   *
-   * @memberof blueprints.NamedBase
-   *
-   * @description
-   * Look through a given directory for the correct blueprint
-   *
-   * @param {String} type
-   * @param {String} fileExt
-   * @param {String} directory
-   *
-   * @returns {String}
-   */
-  findBlueprints: function findBlueprints(type, fileExt, directory) {
-    var files  = fs.readdirSync(directory),
+    /**
+     * @name findBlueprints
+     *
+     * @memberof blueprints.NamedBase
+     *
+     * @description
+     * Look through a given directory for the correct blueprint
+     *
+     * @param {String} type
+     * @param {String} fileExt
+     * @param {String} directory
+     *
+     * @returns {String}
+     */
+    findBlueprints: function findBlueprints(type, fileExt, directory) {
+      var files  = fs.readdirSync(directory),
         exists = fs.existsSync,
         currentDir,
         blueprint,
         template;
 
-    for(var i = 0, len = files.length; i < len; i++) {
-      currentDir = directory + files[i] + '/';
+      for(var i = 0, len = files.length; i < len; i++) {
+        currentDir = directory + files[i] + '/';
 
-      blueprint = currentDir + type + '/template.' + fileExt;
+        blueprint = currentDir + type + '/template.' + fileExt;
 
-      if(exists(currentDir + 'blueprint.json')) {
-        if(exists(blueprint)) {
-          this.log(_createMessage(directory, type));
+        if(exists(currentDir + 'blueprint.json')) {
+          if(exists(blueprint)) {
+            this.thisRef.log(_createMessage(directory, type));
 
-          template = blueprint;
+            template = blueprint;
 
-          break;
+            break;
+          }
         }
       }
-    }
 
-    return template;
+      return template;
+    }
   }
 });
 
