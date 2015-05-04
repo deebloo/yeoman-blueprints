@@ -7,6 +7,13 @@ By using these extended methods yeoman will automatically check for locally crea
 
 ##### GENERATORS MUST BE UNDER A GENERATORS FOLDER 
 
+Generated project file structure
++-- blueprints/
+|   +-- templates/
+|       +-- controller/
+|           +-- template.js
+|       +-- blueprint.json
+
 ```
 npm install --save yeoman-blueprints
 ```
