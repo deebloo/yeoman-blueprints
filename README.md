@@ -20,7 +20,8 @@ root
 |------ controller
 └-------- template.js
 ```
-Methods
+
+## Methods
 
 ### blueprints.copyTpl
 ```js
