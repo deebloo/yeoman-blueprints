@@ -12,14 +12,14 @@ npm install --save yeoman-blueprints
 ```
 
 the generated folder structure for overriding blueprint
-
-    root
-    |-- blueprints
-    |---- templates
-    |------ blueprint.json
-    |------ controller
-    └-------- template.js
-
+```
+root
+|-- blueprints
+|---- templates
+|------ blueprint.json
+|------ controller
+└-------- template.js
+```
 Methods
 
 ### blueprints.copyTpl
