@@ -38,7 +38,7 @@ this.copyTpl('controller', 'js', './destination/my-controller.js', values);
 this.copy('view', 'html', './destination/my-view.html');
 ```
 
-Example:
+## Example:
 ```js
 var blueprint = require('yeoman-blueprints');
 
